@@ -235,7 +235,7 @@ function SolarTypesSection() {
             <span className="text-primary">Install</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Just like cars come in different types, solar systems do too. We offer tailored solutions for every need and budget.
+            Solar comes in many forms — each engineered for a different environment, scale, and goal. Explore the systems we expertly design and install.
           </p>
         </motion.div>
 
