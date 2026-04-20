@@ -330,8 +330,9 @@ function TestimonialsSection() {
   ];
 
   return (
-    <section id="testimonials" className="py-24 bg-background">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="testimonials" className="relative py-24 bg-background overflow-hidden">
+      <FloatingShapes variant="leaves" />
+      <div className="relative max-w-6xl mx-auto px-6">
         <motion.div
           variants={zoomIn}
           initial="hidden"
@@ -383,8 +384,9 @@ function TestimonialsSection() {
 
 function ContactSection() {
   return (
-    <section id="contact" className="py-24 bg-secondary">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+    <section id="contact" className="relative py-24 bg-secondary overflow-hidden">
+      <FloatingShapes variant="suns" />
+      <div className="relative max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
         <motion.div
           variants={fadeLeft}
           initial="hidden"
