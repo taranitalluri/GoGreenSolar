@@ -168,8 +168,9 @@ function StatsBar() {
 
 function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-background">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <section id="about" className="relative py-24 bg-background overflow-hidden">
+      <FloatingShapes variant="mixed" />
+      <div className="relative max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
         <motion.div
           variants={fadeLeft}
           initial="hidden"
