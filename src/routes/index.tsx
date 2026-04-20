@@ -26,6 +26,41 @@ const fadeRight = { hidden: { opacity: 0, x: 80 }, visible: { opacity: 1, x: 0 }
 const zoomIn = { hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1 } };
 const fadeDown = { hidden: { opacity: 0, y: -60 }, visible: { opacity: 1, y: 0 } };
 
+function FloatingShapes({ variant = "leaves" }: { variant?: "leaves" | "suns" | "mixed" }) {
+  // Light, slow-moving decorative shapes for section backgrounds.
+  const shapes = [
+    { Icon: Leaf, size: 80, top: "8%", left: "6%", duration: 14, delay: 0, x: 30, y: 20, rotate: 25 },
+    { Icon: Sun, size: 110, top: "15%", left: "78%", duration: 18, delay: 1, x: -40, y: 30, rotate: -20 },
+    { Icon: Leaf, size: 60, top: "55%", left: "85%", duration: 16, delay: 2, x: -25, y: -35, rotate: 40 },
+    { Icon: Leaf, size: 95, top: "70%", left: "10%", duration: 20, delay: 0.5, x: 35, y: -25, rotate: -30 },
+    { Icon: Sun, size: 70, top: "40%", left: "45%", duration: 22, delay: 1.5, x: 20, y: 40, rotate: 15 },
+    { Icon: Leaf, size: 50, top: "85%", left: "55%", duration: 15, delay: 2.5, x: -30, y: -20, rotate: -45 },
+  ];
+  const pick = (i: number) => {
+    if (variant === "leaves") return Leaf;
+    if (variant === "suns") return Sun;
+    return i % 2 === 0 ? shapes[i].Icon : shapes[i].Icon;
+  };
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      {shapes.map((s, i) => {
+        const Icon = pick(i);
+        return (
+          <motion.div
+            key={i}
+            className="absolute text-primary/10"
+            style={{ top: s.top, left: s.left }}
+            animate={{ x: [0, s.x, 0], y: [0, s.y, 0], rotate: [0, s.rotate, 0] }}
+            transition={{ duration: s.duration, delay: s.delay, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Icon style={{ width: s.size, height: s.size }} strokeWidth={1.2} />
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
 function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground">
@@ -133,8 +168,9 @@ function StatsBar() {
 
 function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-background">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <section id="about" className="relative py-24 bg-background overflow-hidden">
+      <FloatingShapes variant="mixed" />
+      <div className="relative max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
         <motion.div
           variants={fadeLeft}
           initial="hidden"
@@ -219,8 +255,9 @@ function SolarTypesSection() {
   const animations = [fadeLeft, fadeRight, fadeLeft, fadeRight];
 
   return (
-    <section id="solar-types" className="py-24 bg-secondary">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="solar-types" className="relative py-24 bg-secondary overflow-hidden">
+      <FloatingShapes variant="mixed" />
+      <div className="relative max-w-6xl mx-auto px-6">
         <motion.div
           variants={fadeDown}
           initial="hidden"
@@ -235,7 +272,7 @@ function SolarTypesSection() {
             <span className="text-primary">Install</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Just like cars come in different types, solar systems do too. We offer tailored solutions for every need and budget.
+            Solar comes in many forms — each engineered for a different environment, scale, and goal. Explore the systems we expertly design and install.
           </p>
         </motion.div>
 
@@ -294,8 +331,9 @@ function TestimonialsSection() {
   ];
 
   return (
-    <section id="testimonials" className="py-24 bg-background">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="testimonials" className="relative py-24 bg-background overflow-hidden">
+      <FloatingShapes variant="leaves" />
+      <div className="relative max-w-6xl mx-auto px-6">
         <motion.div
           variants={zoomIn}
           initial="hidden"
@@ -347,8 +385,9 @@ function TestimonialsSection() {
 
 function ContactSection() {
   return (
-    <section id="contact" className="py-24 bg-secondary">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+    <section id="contact" className="relative py-24 bg-secondary overflow-hidden">
+      <FloatingShapes variant="suns" />
+      <div className="relative max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
         <motion.div
           variants={fadeLeft}
           initial="hidden"
