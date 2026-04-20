@@ -255,8 +255,9 @@ function SolarTypesSection() {
   const animations = [fadeLeft, fadeRight, fadeLeft, fadeRight];
 
   return (
-    <section id="solar-types" className="py-24 bg-secondary">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="solar-types" className="relative py-24 bg-secondary overflow-hidden">
+      <FloatingShapes variant="mixed" />
+      <div className="relative max-w-6xl mx-auto px-6">
         <motion.div
           variants={fadeDown}
           initial="hidden"
